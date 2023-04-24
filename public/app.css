@@ -1,0 +1,17 @@
+.page-container {
+	padding: 20px;
+}
+
+label {
+	text-transform: capitalize;
+}
+
+#send-app-button, 
+#submit-app-button{
+	display: none;
+}
+
+.request-status-bar {
+	text-align: center;
+	display: none;
+}
