@@ -24,6 +24,11 @@ router.post('/create-application', async (req, res, next) => {
     applicationController.createApplication(req, res, next);
 });
 
+// POST: Update Application
+router.post('/update-application', async (req, res, next) => {
+    applicationController.updateApplication(req, res, next);
+});
+
 // POST: Send Application to Merchant
 router.post('/send-application', async (req, res, next) => {
     applicationController.sendApplication(req, res, next);

@@ -104,6 +104,57 @@ class applicationController{
             });
     }
 
+
+
+    /*
+    * Update an existing application
+    */
+    static async updateApplication(request, response, next) {
+            const accessToken = await authHelper.getAuthToken(); // Get Access Token
+
+            let requestBody = {
+                "agent": parseInt(request.body.agentId),
+                "applicationName": request.body.appName,
+                "plan": {
+                  "planId": parseInt(request.body.planId)
+                },
+                "principals": [
+                    {
+                        "istreet": request.body.principals.istreet,
+                        "city": request.body.principals.city,
+                        "state": request.body.principals.state,
+                        "zipCode": request.body.principals.zipCode,
+                        "firstName": request.body.principals.firstName,
+                        "lastName": request.body.principals.lastName,
+                        "socialSecurityNumber": request.body.principals.socialSecurityNumber,
+                        "driverLicenseNumber": request.body.principals.driverLicenseNumber,
+                        "driverLicenseIssuedState": request.body.principals.driverLicenseIssuedState,
+                        "dateOfBirth": request.body.principals.dateOfBirth,
+                        "phoneNumber": request.body.principals.phoneNumber,
+                        "email": request.body.principals.email,
+                        "equityOwnershipPercentage": parseInt(request.body.principals.equityOwnershipPercentage),
+                        "title": request.body.principals.title,
+                        "isPersonalGuarantor": Boolean(request.body.principals.isPersonalGuarantor)
+                    }
+                ]
+            };
+
+            
+
+            // Authorization Header
+            let config = {
+                headers: { Authorization: `Bearer ${accessToken.data.access_token}` }
+            };
+
+            // HTTP Request
+            axios.patch(API_SANDBOX_URL + '/enroll/application/key/' + request.body.externalKey, requestBody, config)
+            .then((result) => {
+                response.json(result.data.data);
+            }).catch((error) => {
+                response.json(error.response.data);
+            });
+    }
+
     
 } 
 

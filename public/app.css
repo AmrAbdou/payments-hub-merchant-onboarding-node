@@ -6,7 +6,8 @@ label {
 	text-transform: capitalize;
 }
 
-#send-app-button, 
+#send-app-button,
+#update-app-button, 
 #submit-app-button{
 	display: none;
 }
